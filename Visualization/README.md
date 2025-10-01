@@ -27,7 +27,7 @@ pip install --no-index --no-deps --find-links=. pyvis networkx jinja2 jsonpickle
 ##Design choices
 Single directed graph (DiGraph), not MultiDiGraph. One edge per direction, with aggregated attributes. 
 This avoids compatibility issues with PyVis when rendering multiple parallel edges and ensures no loss of information.
-IP Cleaning : port is removed from address IPs fields.
+IP Cleaning : port is removed from src and dst IPs fields.
 
 
 ###Prioritise data fidelity
@@ -51,5 +51,6 @@ title: tooltip string combining the above for display in the HTML.
 ###Single edge per (src;dst)
 PyVis / vis.js handling of multiple parallel edges between the same node pair is fragile and can result in lost or collapsed edges or missing tooltips. 
 Using a single edge per direction and aggregating session data guarantees no loss of user/protocol information while keeping the visual output deterministic and portable. 
-Trade-off: multiple sessions in the same direction are not shown as separate parallel arrows, but all session metadata is preserved in the edge tooltip.
+Multiple sessions in the same direction are not shown as separate parallel arrows, but all session metadata is preserved in the edge tooltip.
+
 
